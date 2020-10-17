@@ -32,4 +32,4 @@ def getRadius(): # Takes in a user input of miles and converts it to meters and 
     return meters
 
 def generatePlaceSearchCall(key, lati, long, rad): # Takes all established parameters and creates a URL
-    return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lati + "," + long + "&radius=" + rad + "&type=electronics&keyword=gpu&key=" + key
+    return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + str(lati) + "," + str(long) + "&radius=" + str(rad) + "&type=electronics&keyword=gpu&key=" + str(key)
