@@ -1,7 +1,6 @@
 # OwlHacks 2020
 # Athan Kim
-# Program takes in two user inputs as the Latitude and Longitude of the location to be used
-# Also takes in the API key
+# Program establishes 5 usable functions that fetch the key, latitude, longitude and the radius. Given these parameters, a URL can be created.
 
 def getKey(): # Fetches the key and returns the value
     file = open(r"C:\Users\Athan-PC\Storefront\.gitignore\key.txt")
