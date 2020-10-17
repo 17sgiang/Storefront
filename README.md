@@ -1,5 +1,5 @@
 # Storefront
-# OwlHacks 2020
+OwlHacks 2020
 
 ## Searching for Deals on Electronics
 
