@@ -4,10 +4,16 @@ Created on Sat Oct 17 16:23:21 2020
 
 @author: alexl
 """
-from fetchKeyLatLong import *
-key,lat,long,place_search_call_url
+from makeURL import *
+
 
 def main():
+    key = getKey();
+    lat = getLati();
+    long = getLongi();
+    rad = getRadius();
+    
+    generatePlaceSearchCall(key, lati, long, rad);
     
 
 if __name__== "__main__":
