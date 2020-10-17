@@ -20,6 +20,9 @@ def locationParse(request_url):
         id = result.get('place_id')
         place_id_dict.update(id)
     
+    #testing
+    print (place_id_dict)
+    
     return (place_id_dict)
     
         
