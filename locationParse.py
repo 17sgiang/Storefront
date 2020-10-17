@@ -8,21 +8,20 @@ use by Google Place Details API'
 
 
 import urllib.request, json, requests, sys
-from bs4 import BeautifulSoup
+
 
 def locationParse(request_url):
-    places = requests.get(request_url)
-    results = BeautifulSoup(places.content, 'html.parser')
+    #https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=39.952583,-75.165222&radius=30000&type=electronics_store&keyword=gpu&key=AIzaSyCR4FS2rFxzokjyDe5nkDOF9TKYcNBvAZs
     
-    place_id_dict = {}
+    with urllib.request.urlopen(request_url) as url:
+         data = json.loads(url.read())
+         
+         place_id_list = []
     
-    for result in results:
-        id = result.find('place_id')
-        place_id_dict.update(id)
-    
-    #testing
-    print (place_id_dict)
-    
-    return (place_id_dict)
+    for i in range(len(data['results'])):
+        place_id = data['results'][i].get('place_id')
+        place_id_list.append(place_id)
+        
+    return (place_id_list)
     
         

@@ -16,9 +16,9 @@ def main():
     rad = getRadius();
     
     place_search_call = generatePlaceSearchCall(key, lat, long, rad);
-    print (place_search_call)
     
-    locationParse(place_search_call)
+    print(locationParse(place_search_call))
+    
 
 if __name__== "__main__":
     main()
