@@ -9,9 +9,9 @@ import os
 
 def getKey(): # Fetches the key and returns the value
     previous_dir = os.getcwd()
-    os.chdir('\.gitignore')
+    os.chdir('.\.gitignore')
     
-    file = open("key.txt")
+    file = open("key.txt", "r")
     key1 = file.read()
     file.close()
     os.chdir(previous_dir)
