@@ -4,11 +4,11 @@ Created on Sat Oct 17 16:12:05 2020
 
 @author: 17sgi
 """
-from makeURL.py import getKey
+from makeURL import getKey
 
 # Takes a list of place_IDs
 # Returns a list of API calls for Google's Place Details API
-def makePlaceDetailAPICalls(placeIdDict):
+def makePlaceDetailsAPICalls(placeIdList):
     
     """
     
@@ -28,17 +28,17 @@ def makePlaceDetailAPICalls(placeIdDict):
     apiCallDict = []
     
     # Goes through the provided dictionary of place_IDs
-    for i in placeIdDict:
+    for i in placeIdList:
         
         # apiCall is a specific API call given the place ID   
         apiCall = "https://maps.googleapis.com/maps/api/place/details/json?"    
         
-        apiCall += "place_id=" + placeIdDict[i] + "&"
+        apiCall += "place_id=" + i + "&"
         apiCall += "key=" + apiKey + "&"
         # fields: website, rating
         apiCall += "fields=" + "website,rating"
         
-        apiCallDict[i] = apiCall
+        apiCallDict.append(apiCall)
     
     return apiCallDict
         
