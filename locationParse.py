@@ -12,12 +12,12 @@ from bs4 import BeautifulSoup
 
 def locationParse(request_url):
     places = requests.get(request_url)
-    places_json = BeautifulSoup(places.content, 'html.parser')
+    results = BeautifulSoup(places.content, 'html.parser')
     
     place_id_dict = {}
     
-    for result in places_json['results']:
-        id = result.get('place_id')
+    for result in results:
+        id = result.find('place_id')
         place_id_dict.update(id)
     
     #testing
