@@ -4,6 +4,7 @@ OwlHacks 2020
 ## Searching for Deals on Electronics
 
 The purpose of this program is to detect deals on electronics within a certain proximity given a location and radius.
+
 The user provides a location via latitude & longitude, along with a radius in miles. Storefront then takes these parameters and finds deals on electronics within the radius of the location.
 
 ## Teamwork
