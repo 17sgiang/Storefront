@@ -2,11 +2,17 @@
 # Athan Kim
 # Program takes in two user inputs as the Latitude and Longitude of the location to be used
 # Also takes in the API key
+import os
 
 def getKey(): # Fetches the key and returns the value
-    file = open(r"C:\Users\Athan-PC\Storefront\.gitignore\key.txt")
+    previous_dir = os.getcwd()
+    os.chdir('\.gitignore')
+    
+    file = open("key.txt")
     key1 = file.read()
     file.close()
+    os.chdir(previous_dir)
+    
     return key1
 
 def getLati(): # Takes in a user input of the latitude and returns the value

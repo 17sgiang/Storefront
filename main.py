@@ -9,6 +9,7 @@ from makeURL import *
 
 def main():
     key = getKey();
+    print (key)
     lat = getLati();
     long = getLongi();
     rad = getRadius();
