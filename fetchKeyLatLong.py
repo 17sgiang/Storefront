@@ -21,12 +21,14 @@ def getMiles(): # Takes in a user input of miles and converts it to meters and r
     miles = input("Enter the desired mile radius: ")
     meters = float(miles) * 1609.34
     return meters
-def appendToURL(): # Takes all three methods and appends them to the URL
+
+def makePlaceSearchCall(): # Takes all three methods and appends them to the URL
     #return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=",getLati(),",",getLongi(),"&radius=",getMiles(),"&type=electronics&keyword=gpu&key=",getKey()
     return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + str(getLati()) + "," + str(getLongi()) + "&radius=" + str(getMiles()) + "&type=electronics&keyword=gpu&key=" + str(getKey())
+
 # Tests
 #print("Key: " , getKey()) 
 #lati = getLati()
 #longi = getLongi()
 #print("Latitude: " , lati , "Longitude: " , longi)
-print(appendToURL())
+print(makePlaceSearchCall())
