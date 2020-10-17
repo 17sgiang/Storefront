@@ -9,10 +9,16 @@ def getKey(): # Fetches the key and returns the value
     file.close()
     return key1
 
+def getLati(): # Takes in a user input of the latitude and returns the value
+    lati = input("Enter the desired latitude value (N): ")
+    return lati
 
-print("Key: " , getKey()) # Prints the key
-lati = input("Enter the desired latitude value (N): ") # Takes in latitude and stores it in lati
-longi = input("Enter the desired longitude value (W): "); # Takes in longitude and stores it in longi
-print("Latitude: " , lati , "Longitude" , longi)
+def getLongi(): # Takes in a user input of the longitude and returns the value
+    longi = input("Enter the desired longitude value (W): ");
+    return longi
 
-key = getKey()
+# Tests
+print("Key: " , getKey()) 
+lati = getLati()
+longi = getLongi()
+print("Latitude: " , lati , "Longitude: " , longi)
