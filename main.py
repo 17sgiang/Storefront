@@ -23,13 +23,12 @@ def main():
     place_id_list = locationParse(place_search_call)
     
     api_call_list = (makePlaceDetailsAPICalls(place_id_list))
-    
-    print(api_call_list)
 
     rateFilteredList = noBadRatings(api_call_list)
     blacklistFilteredList = onlyElectronics(api_call_list)
     
-    final_dict = desiredUrls(blacklistFilteredList)
+    final_dict = desiredURLs(blacklistFilteredList)
+    print(final_dict)
     
     
 if __name__== "__main__":

@@ -22,7 +22,6 @@ def makePlaceDetailsAPICalls(placeIdList):
     
     
     """
-    print(placeIdList)
     
     apiKey = getKey()
     
@@ -37,7 +36,7 @@ def makePlaceDetailsAPICalls(placeIdList):
         apiCall += "place_id=" + i + "&"
         apiCall += "key=" + apiKey + "&"
         # fields: website, rating
-        apiCall += "fields=" + "website,rating"
+        apiCall += "fields=" + "website,rating,name"
         
         apiCallList.append(apiCall)
     
