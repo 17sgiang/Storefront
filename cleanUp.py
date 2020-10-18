@@ -4,7 +4,7 @@
 # Program first removes all elements from given list that have a rating less than 3.5
 # Then removes all elements from given list that contain blacklisted words
 
-import urllib.request, json
+import urllib.request, json, os
 
 def tooBad(request_url): # returns true or false if the rating is less than or greater than 3.5
     with urllib.request.urlopen(request_url) as url:
@@ -16,22 +16,40 @@ def tooBad(request_url): # returns true or false if the rating is less than or g
             return 1
 
 def noBadRatings(place_id_list):
-    for i in range(len(place_id_list)):
-        with urllib.request.urlopen(place_id_list[i]) as url:
+    newList = []
+    for i in place_id_list:
+        with urllib.request.urlopen(i) as url:
             data = json.loads(url.read())
             rating = data["result"].get("rating")
-            print()
-            print(rating)
-            print()
-            print(i)
-            print()
-            if rating < 4:
-                deadUrl = place_id_list[i]
-                place_id_list.remove(deadUrl)
-                i = i - 1
-    return place_id_list
+            if rating >= 4:
+                newList.append(i)
+    return newList
 
-testList = ['https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJM5LjuzqwxokRf4fN-q4FkI8&key=AIzaSyCR4FS2rFxzokjyDe5nkDOF9TKYcNBvAZs&fields=name,website,rating','https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJH_t6dDDGxokRgS5Jwy5zf8k&key=AIzaSyCR4FS2rFxzokjyDe5nkDOF9TKYcNBvAZs&fields=name,website,rating','https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJyfcTbMnBxokR_syntaa6Nso&key=AIzaSyCR4FS2rFxzokjyDe5nkDOF9TKYcNBvAZs&fields=name,website,rating']
-print(testList)
-print()
-print(noBadRatings(testList))
+def onlyElectronics(place_id_list):
+    blackList = []
+    newList1 = []
+    previous_dir = os.getcwd()
+    os.chdir(r"C:\Users\Athan-PC\Storefront-main")
+    with open('blacklist.txt', 'r') as f:
+        blackList.append(list(f))
+    with open('blacklist.txt', 'r') as f: # Gets rid of \n in list elements
+        blackList = [line.rstrip('\n') for line in f] 
+    f.close()
+    os.chdir(previous_dir)
+    for i in place_id_list:
+        with urllib.request.urlopen(i) as url:
+            data = json.loads(url.read())
+            name = data["result"].get("name")
+            if name not in blackList:
+                newList1.append(i)
+    return newList1
+    
+def desiredURLs(place_id_list):
+    newDict = {}
+    for i in place_id_list:
+        with urllib.request.urlopen(i) as url:
+            data = json.loads(url.read())
+            name = data["result"].get("name")
+            link = data["result"].get("website")
+            newDict[name] = link
+    return newDict
