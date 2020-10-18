@@ -8,7 +8,6 @@
 import os
 
 def getKey(): # Fetches the key and returns the value
-    previous_dir = os.getcwd()
     
     file = open("key.txt", "r")
     key1 = file.read()
