@@ -51,5 +51,5 @@ def desiredURLs(place_id_list):
             data = json.loads(url.read())
             name = data["result"].get("name")
             link = data["result"].get("website")
-            newDict[name] = link
+            newDict[link] = name
     return newDict
