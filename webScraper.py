@@ -3,7 +3,6 @@
 Created on Sat Oct 17
 
 Parameters:
-    list of words (to scrape for)
     Directory. Website link is the key, and name is the value.
 
 Returns:
@@ -34,9 +33,15 @@ import re
 
 # Takes a directory where website URLs are keys paired with the store name
 # Returns a filtered version of that based on searched keywords
-def webScraper(words, siteDict):
+def webScraper(siteDict):
     returnDict = {}
+    words = []
     
+    with open('salePhrases.csv', 'r') as f:
+        words.append(list(f))
+    with open('salePhrases.csv', 'r') as f: # Gets rid of \n in list elements
+        words = [line.rstrip('\n') for line in f]
+        
     # siteDict is a dictionary of URLs with attached names
     for link in siteDict:
         # isFound = 0
@@ -49,14 +54,15 @@ def webScraper(words, siteDict):
             soup = BeautifulSoup(html, "html.parser")
             # print(soup.get_text())
             # print(soup.find_all(string=re.compile(word)))
-            matchList = soup.find_all(string=re.compile(word))
+            matchList = soup.find(string=re.compile(word))
             
             # If there's at least one match for the words, add the website and move to the next
             if(len(matchList) > 0): 
                 # found = 1
-                returnDict[link] = returnDict.get(link)
+                returnDict[link] = siteDict.get(link)
                 break      
     return returnDict
+
 
 
     

@@ -8,6 +8,7 @@ from makeURL import *
 from locationParse import locationParse
 from makePlaceDetailsAPICalls import makePlaceDetailsAPICalls
 from cleanUp import *
+from webScraper import *
 
 ##philly lat long is 39.952583, -75.165222
 
@@ -17,19 +18,30 @@ def main():
     long = getLongi();
     rad = getRadius();
     
+    # 0 API calls
     place_search_call = generatePlaceSearchCall(key, lat, long, rad)
     
-    
+    # 1 API call
     place_id_list = locationParse(place_search_call)
     
+    # 0 Calls
     api_call_list = (makePlaceDetailsAPICalls(place_id_list))
-
-    rateFilteredList = noBadRatings(api_call_list)
-    blacklistFilteredList = onlyElectronics(api_call_list)
     
+    # n Calls
+    rateFilteredList = noBadRatings(api_call_list)
+    
+    # n Calls (Change to edit the list from noBadRatings)
+    # instead, pass rateFilteredList
+    blacklistFilteredList = onlyElectronics(rateFilteredList)
+    
+    # n Calls (Change to edit list, takes blacklistFilteredList)
     final_dict = desiredURLs(blacklistFilteredList)
     print(final_dict)
     
+    # n Calls to read HTML
+    sites_with_sale = webScraper(final_dict)
+    
+    print(sites_with_sale)
     
 if __name__== "__main__":
     main()
