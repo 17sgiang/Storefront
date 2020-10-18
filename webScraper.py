@@ -4,14 +4,10 @@ Created on Sat Oct 17
 
 Parameters:
     list of words (to scrape for)
-    list of dictionaries. Each dictionary is a site
-    Site items:
-        "name": common name for the location
-        "website": url for the corresponding site
+    Directory. Website link is the key, and name is the value.
 
 Returns:
-    list of dictionaries, where each dictionary is a site.
-    This list is a filtered version of the parameter list. 
+    Directory that is essentially the parameter but filtered 
     
 Potentially an issue of the search range being too broad.
 Currently, if the scraper finds one instance of a key word in the html, the entire
@@ -28,28 +24,26 @@ from urllib.request import urlopen
 import re
 
 """
-    return type is a list of dictionaries
-    [
-     {name:"",website:""}
-     {name:"",website:""}
-     ]        
+    return type is a dictionary
+    {
+     {"link": "name"}
+    }        
     
     
 """
 
-# Takes a list of dictionaries where names are coupled with website URLs
+# Takes a directory where website URLs are keys paired with the store name
 # Returns a filtered version of that based on searched keywords
-def webScraper(words, websiteList):
-    returnList = []
+def webScraper(words, siteDict):
+    returnDict = {}
     
-    # websiteList is a list of dictionaries
-    # siteDict should be a dictionary
-    for siteDict in websiteList:
+    # siteDict is a dictionary of URLs with attached names
+    for link in siteDict:
         # isFound = 0
         # Check if the key word appears in the html of a website
         for word in words:
-            print("Searching for '" + word + "' at url: " + siteDict["website"])
-            page = urlopen(siteDict["website"])
+            print("Searching for '" + word + "' at url: " + link)
+            page = urlopen(link)
             
             html = page.read().decode("utf-8")
             soup = BeautifulSoup(html, "html.parser")
@@ -60,11 +54,9 @@ def webScraper(words, websiteList):
             # If there's at least one match for the words, add the website and move to the next
             if(len(matchList) > 0): 
                 # found = 1
-                obj = {"name":siteDict["name"],"website":siteDict["website"]}
-                returnList.append(obj)
-                break
-            
-    return returnList
+                returnDict[link] = returnDict.get(link)
+                break      
+    return returnDict
 
 
     
