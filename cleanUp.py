@@ -15,9 +15,9 @@ def tooBad(request_url): # returns true or false if the rating is less than or g
         else:
             return 1
 
-def noBadRatings(place_id_list):
+def noBadRatings(api_call_list):
     newList = []
-    for i in place_id_list:
+    for i in api_call_list:
         with urllib.request.urlopen(i) as url:
             data = json.loads(url.read())
             rating = data["result"].get("rating")
@@ -25,7 +25,7 @@ def noBadRatings(place_id_list):
                 newList.append(i)
     return newList
 
-def onlyElectronics(place_id_list):
+def onlyElectronics(api_call_list):
     blackList = []
     newList1 = []
     previous_dir = os.getcwd()
@@ -36,7 +36,7 @@ def onlyElectronics(place_id_list):
         blackList = [line.rstrip('\n') for line in f] 
     f.close()
     os.chdir(previous_dir)
-    for i in place_id_list:
+    for i in api_call_list:
         with urllib.request.urlopen(i) as url:
             data = json.loads(url.read())
             name = data["result"].get("name")
@@ -44,9 +44,9 @@ def onlyElectronics(place_id_list):
                 newList1.append(i)
     return newList1
     
-def desiredURLs(place_id_list):
+def desiredURLs(api_call_list):
     newDict = {}
-    for i in place_id_list:
+    for i in api_call_list:
         with urllib.request.urlopen(i) as url:
             data = json.loads(url.read())
             name = data["result"].get("name")
