@@ -28,18 +28,12 @@ def main():
     api_call_list = (makePlaceDetailsAPICalls(place_id_list))
     
     # n Calls
-    rateFilteredList = noBadRatings(api_call_list)
-    
-    # n Calls (Change to edit the list from noBadRatings)
-    # instead, pass rateFilteredList
-    blacklistFilteredList = onlyElectronics(rateFilteredList)
-    
-    # n Calls (Change to edit list, takes blacklistFilteredList)
-    final_dict = desiredURLs(blacklistFilteredList)
-    print(final_dict)
+    URL_name_dict = applyRatingFilterAndBlacklist(api_call_list)
+
+    print(URL_name_dict)
     
     # n Calls to read HTML
-    sites_with_sale = webScraper(final_dict)
+    sites_with_sale = webScraper(URL_name_dict)
     
     print(sites_with_sale)
     
