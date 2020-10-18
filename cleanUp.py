@@ -28,9 +28,9 @@ def noBadRatings(api_call_list):
 def onlyElectronics(api_call_list):
     blackList = []
     newList1 = []
-    with open('blacklist.txt', 'r') as f:
+    with open('blacklist.csv', 'r') as f:
         blackList.append(list(f))
-    with open('blacklist.txt', 'r') as f: # Gets rid of \n in list elements
+    with open('blacklist.csv', 'r') as f: # Gets rid of \n in list elements
         blackList = [line.rstrip('\n') for line in f] 
     for i in api_call_list:
         with urllib.request.urlopen(i) as url:
