@@ -29,8 +29,13 @@ def applyRatingFilterAndBlacklist(api_call_list):
             rating = data["result"].get("rating")
             name = data["result"].get("name")
             link = data["result"].get("website")
-            if (rating >= 4) & (name not in blackList):
-                filteredDict[link] = name
+            
+            if(rating is not None):
+                if (rating >= 4) & (name not in blackList):
+                    filteredDict[link] = name
+            else:
+                if (name not in blackList):
+                    filteredDict[link] = name
     return filteredDict
 
     
