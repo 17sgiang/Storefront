@@ -20,6 +20,7 @@ Uses BeautifulSoup library.
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+from toFile import dictToTxt
 import re
 
 """
@@ -63,7 +64,8 @@ def webScraper(siteDict):
                 print("Found")
                 returnDict[link] = siteDict.get(link)
                 break      
-    return returnDict
+    dictToTxt(returnDict)
+    # return returnDict
 
 
 
