@@ -25,6 +25,10 @@ def main():
     api_call_list = makePlaceDetailsAPICalls(place_id_dict)
 
     rateFilteredList = noBadRatings(api_call_list)
+    blacklistFilteredList = onlyElectronics(api_call_list)
+    
+    final_dict = print(desiredUrls(blacklistFilteredList))
+    
     
 if __name__== "__main__":
     main()

@@ -25,7 +25,7 @@ def makePlaceDetailsAPICalls(placeIdList):
 
     apiKey = getKey()
     
-    apiCallDict = []
+    apiCallList = []
     
     # Goes through the provided dictionary of place_IDs
     for i in placeIdList:
@@ -40,7 +40,7 @@ def makePlaceDetailsAPICalls(placeIdList):
         
         apiCallDict.append(apiCall)
     
-    return apiCallDict
+    return apiCallList
         
     
     
