@@ -28,14 +28,10 @@ def noBadRatings(api_call_list):
 def onlyElectronics(api_call_list):
     blackList = []
     newList1 = []
-    previous_dir = os.getcwd()
-    os.chdir(r"C:\Users\Athan-PC\Storefront-main")
     with open('blacklist.txt', 'r') as f:
         blackList.append(list(f))
     with open('blacklist.txt', 'r') as f: # Gets rid of \n in list elements
         blackList = [line.rstrip('\n') for line in f] 
-    f.close()
-    os.chdir(previous_dir)
     for i in api_call_list:
         with urllib.request.urlopen(i) as url:
             data = json.loads(url.read())
